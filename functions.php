@@ -48,29 +48,18 @@ function nico_killips_setup() {
 add_action( 'after_setup_theme', 'nico_killips_setup' );
 
 /**
- * Enqueue scripts and styles
+ * Enqueue theme styles
  */
-function nico_killips_scripts() {
-    // Enqueue main theme stylesheet
-    wp_enqueue_style( 
-        'nico-killips-style',
-        get_stylesheet_uri(),
-        [],
-        NICO_KILLIPS_VERSION
+function nico_killips_enqueue_styles() {
+    // Get theme version from style.css
+    $theme_version = wp_get_theme()->get('Version');
+    
+    // Enqueue main stylesheet
+    wp_enqueue_style(
+        'nico-killips-styles',
+        get_template_directory_uri() . '/assets/css/style.css',
+        array(),
+        $theme_version
     );
-
-    // Enqueue compiled CSS if it exists
-    if ( file_exists( NICO_KILLIPS_TEMPLATE_DIR . '/assets/css/style.css' ) ) {
-        wp_enqueue_style(
-            'nico-killips-compiled-style',
-            NICO_KILLIPS_TEMPLATE_URI . '/assets/css/style.css',
-            ['nico-killips-style'],
-            NICO_KILLIPS_VERSION
-        );
-    }
-
-    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-        wp_enqueue_script( 'comment-reply' );
-    }
 }
-add_action( 'wp_enqueue_scripts', 'nico_killips_scripts' );
+add_action('wp_enqueue_scripts', 'nico_killips_enqueue_styles');

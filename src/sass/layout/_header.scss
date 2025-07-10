@@ -2,7 +2,7 @@
   @use '../abstracts/mixins';
   @use '../abstracts/variables' as vars;
 
-  .site-header {
+.site-header {
   padding: vars.$spacing-md vars.$container-padding;
   background-color: vars.$color-background;
   border-bottom: 1px solid vars.$color-border;

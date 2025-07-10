@@ -21,11 +21,6 @@
   @include mixins.container();
 }
 
-.site-main {
-  max-width: vars.$container-width;
-  margin: 0 auto;
-}
-
 // Posts and pages
 .entry-header {
   margin-bottom: vars.$spacing-lg;

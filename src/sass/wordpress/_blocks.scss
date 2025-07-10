@@ -101,6 +101,20 @@
 // Columns block
 .wp-block-columns {
   margin-bottom: vars.$spacing-lg;
+  &.reverse-on-mobile {
+    .wp-block-column {
+      &:first-child {
+        @include mixins.media-breakpoint-down(md) {
+          order: 1;
+        }
+      }
+      &:last-child {
+        @include mixins.media-breakpoint-down(md) {
+          order: 0;
+        }
+      }
+    }
+  }
 
   @include mixins.media-breakpoint-down(md) {
     flex-wrap: wrap;
@@ -109,7 +123,7 @@
 
 // Image block
 .wp-block-image {
-  margin-bottom: vars.$spacing-md;
+  margin-bottom: vars.$spacing-xl;
 
   img {
     max-width: 100%;
@@ -184,3 +198,19 @@
     font-size: 1.5rem;
   }
 }
+
+// Block Group
+.wp-block-group {
+  padding: vars.$spacing-xl 0;
+  width: 100%;
+  .wp-block-group__inner-container {
+    padding-inline: 1.5rem;
+    max-width: vars.$container-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wp-block-group__inner-container > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
