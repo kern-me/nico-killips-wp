@@ -1,0 +1,90 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Media elements
+img, figure {
+  max-width: 100%;
+  height: auto;
+}
+
+.wp-caption {
+  margin-bottom: vars.$spacing-md;
+  max-width: 100%;
+
+  img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.wp-caption-text {
+  margin: vars.$spacing-xs 0 0;
+  text-align: center;
+  font-size: 0.9rem;
+  color: vars.$color-text-light;
+}
+
+// WordPress gallery
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: vars.$spacing-sm;
+  margin-bottom: vars.$spacing-md;
+
+  @include mixins.media-breakpoint-up(md) {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .gallery-item {
+    margin: 0;
+  }
+
+  .gallery-icon {
+    img {
+      border: none !important;
+    }
+  }
+
+  .gallery-caption {
+    margin-top: vars.$spacing-xs;
+    font-size: 0.85rem;
+    color: vars.$color-text-light;
+  }
+}
+
+// Featured images
+.post-thumbnail {
+  margin-bottom: vars.$spacing-md;
+
+  img {
+    width: 100%;
+    border-radius: vars.$border-radius-md;
+  }
+}
+
+// Videos and embeds
+.wp-video, .wp-audio {
+  margin-bottom: vars.$spacing-md;
+}
+
+.wp-embed {
+  max-width: 100%;
+  margin-bottom: vars.$spacing-md;
+}
+
+// Make videos responsive
+.wp-block-embed__wrapper {
+  position: relative;
+  overflow: hidden;
+  padding-top: 56.25%; // 16:9 ratio
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

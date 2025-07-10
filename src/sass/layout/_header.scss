@@ -1,0 +1,34 @@
+  @use '../abstracts/functions';
+  @use '../abstracts/mixins';
+  @use '../abstracts/variables' as vars;
+
+  .site-header {
+  padding: vars.$spacing-md vars.$container-padding;
+  background-color: vars.$color-background;
+  border-bottom: 1px solid vars.$color-border;
+}
+
+.site-branding {
+  @include mixins.flex(row, wrap, space-between, center);
+}
+
+.site-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+
+  a {
+    color: vars.$color-secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: vars.$color-primary;
+    }
+  }
+}
+
+.site-description {
+  font-size: 0.9rem;
+  color: vars.$color-text-light;
+  margin: 0;
+}

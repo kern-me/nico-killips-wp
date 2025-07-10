@@ -1,0 +1,97 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Blog archive page styles
+.blog, .archive {
+  .page-header {
+    margin-bottom: vars.$spacing-xl;
+
+    .page-title {
+      margin-bottom: vars.$spacing-xs;
+    }
+
+    .archive-description {
+      color: vars.$color-text-light;
+    }
+  }
+
+  .post {
+    margin-bottom: vars.$spacing-xl;
+    padding-bottom: vars.$spacing-lg;
+    border-bottom: 1px solid vars.$color-border;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
+
+// Blog cards layout
+.blog-card-layout {
+  .posts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-lg;
+
+    @include mixins.media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.media-breakpoint-up(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .post {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+    border-radius: vars.$border-radius-md;
+    overflow: hidden;
+    background-color: vars.$color-light-gray;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-thumbnail {
+      margin-bottom: 0;
+
+      img {
+        border-radius: 0;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+      }
+    }
+
+    .entry-header,
+    .entry-content,
+    .entry-footer {
+      padding: 0 vars.$spacing-md;
+    }
+
+    .entry-header {
+      margin-top: vars.$spacing-md;
+      margin-bottom: vars.$spacing-sm;
+    }
+
+    .entry-title {
+      font-size: 1.4rem;
+    }
+
+    .entry-content {
+      margin-bottom: vars.$spacing-sm;
+
+      p {
+        margin-bottom: vars.$spacing-sm;
+      }
+    }
+
+    .entry-footer {
+      padding-bottom: vars.$spacing-md;
+    }
+  }
+}

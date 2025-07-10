@@ -1,0 +1,94 @@
+// Media query mixins
+@use 'variables' as vars;
+
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: vars.$breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: vars.$breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: vars.$breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: vars.$breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: vars.$breakpoint-sm - 1) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (max-width: vars.$breakpoint-md - 1) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (max-width: vars.$breakpoint-lg - 1) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (max-width: vars.$breakpoint-xl - 1) {
+      @content;
+    }
+  }
+}
+
+// Flexbox mixins
+@mixin flex($direction: row, $wrap: nowrap, $justify: flex-start, $align: stretch) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+// Typography mixins
+@mixin font-size($size, $line-height: null) {
+  font-size: $size;
+  @if $line-height {
+    line-height: $line-height;
+  }
+}
+
+// Transitions
+@mixin transition($property: all, $duration: vars.$transition-fast, $timing: ease) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
+// Shadows
+@mixin box-shadow($shadow...) {
+  box-shadow: $shadow;
+}
+
+@mixin text-shadow($shadow...) {
+  text-shadow: $shadow;
+}
+
+// Clearfix
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// Container
+@mixin container() {
+  width: 100%;
+  max-width: vars.$container-width;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: vars.$container-padding;
+  padding-right: vars.$container-padding;
+}

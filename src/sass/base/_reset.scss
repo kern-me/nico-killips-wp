@@ -1,0 +1,75 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Reset box-sizing
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+// Remove default margin and padding
+html, body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, dl, dd, ul, ol {
+  margin: 0;
+  padding: 0;
+}
+
+// Set core body defaults
+body {
+  min-height: 100vh;
+  scroll-behavior: smooth;
+  text-rendering: optimizeSpeed;
+  line-height: vars.$line-height-base;
+  font-family: vars.$font-primary;
+  font-size: vars.$font-size-base;
+  color: vars.$color-text;
+  background-color: vars.$color-background;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Make images easier to work with
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+// Remove list styles
+ul, ol {
+  list-style: none;
+}
+
+// A elements that don't have a class get default styles
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+a {
+  color: vars.$color-primary;
+  text-decoration: none;
+  @include mixins.transition(color);
+}
+
+a:hover {
+  color: vars.$color-primary-hover;
+}
+
+// Make forms easier to work with
+input, button, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+// Remove all animations, transitions and smooth scrolling for people that prefer not to see them
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

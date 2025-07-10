@@ -1,0 +1,73 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Screen reader text
+.screen-reader-text {
+  border: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  word-wrap: normal !important;
+
+  &:focus {
+    background-color: vars.$color-background;
+    clip: auto !important;
+    clip-path: none;
+    color: vars.$color-text;
+    display: block;
+    font-size: 1rem;
+    height: auto;
+    left: 5px;
+    line-height: normal;
+    padding: 15px 23px 14px;
+    text-decoration: none;
+    top: 5px;
+    width: auto;
+    z-index: vars.$z-index-tooltip;
+    box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.1);
+  }
+}
+
+// Skip link
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background-color: vars.$color-background;
+  color: vars.$color-primary;
+  padding: vars.$spacing-xs vars.$spacing-md;
+  text-decoration: none;
+  z-index: vars.$z-index-tooltip;
+  transition: top 0.2s ease-in-out;
+
+  &:focus {
+    top: 0;
+  }
+}
+
+// Focus styles
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid rgba(vars.$color-primary, 0.5);
+  outline-offset: 2px;
+}
+
+// Make sure inputs have sufficient contrast
+input,
+textarea,
+select {
+  color: vars.$color-text;
+
+  &::placeholder {
+    color: rgba(vars.$color-text, 0.6);
+  }
+}

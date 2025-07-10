@@ -1,0 +1,22 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "rules": {
+    "indentation": 2,
+    "string-quotes": "single",
+    "no-duplicate-selectors": true,
+    "selector-max-id": 1,
+    "selector-combinator-space-after": "always",
+    "selector-attribute-quotes": "always",
+    "selector-attribute-operator-space-before": "never",
+    "selector-attribute-operator-space-after": "never",
+    "selector-attribute-brackets-space-inside": "never",
+    "declaration-block-trailing-semicolon": "always",
+    "declaration-colon-space-before": "never",
+    "declaration-colon-space-after": "always",
+    "media-feature-range-operator-space-before": "always",
+    "media-feature-range-operator-space-after": "always",
+    "media-feature-parentheses-space-inside": "never",
+    "media-feature-colon-space-before": "never",
+    "media-feature-colon-space-after": "always"
+  }
+}

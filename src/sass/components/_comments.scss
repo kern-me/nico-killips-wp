@@ -1,0 +1,119 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+.comments-area {
+  margin-top: vars.$spacing-xl;
+  padding-top: vars.$spacing-lg;
+  border-top: 1px solid vars.$color-border;
+}
+
+.comments-title {
+  margin-bottom: vars.$spacing-lg;
+}
+
+.comment-list {
+  margin: vars.$spacing-md 0;
+
+  .children {
+    margin-left: vars.$spacing-lg;
+    margin-top: vars.$spacing-md;
+  }
+}
+
+.comment {
+  padding: vars.$spacing-md;
+  margin-bottom: vars.$spacing-md;
+  background-color: vars.$color-light-gray;
+  border-radius: vars.$border-radius-md;
+
+  .comment-author {
+    @include mixins.flex(row, nowrap, flex-start, center);
+    margin-bottom: vars.$spacing-xs;
+
+    .avatar {
+      margin-right: vars.$spacing-sm;
+      border-radius: 50%;
+    }
+
+    .fn {
+      font-weight: 700;
+      font-style: normal;
+    }
+  }
+
+  .comment-metadata {
+    margin-bottom: vars.$spacing-sm;
+    font-size: 0.9rem;
+    color: vars.$color-text-light;
+
+    a {
+      color: vars.$color-text-light;
+
+      &:hover {
+        color: vars.$color-primary;
+      }
+    }
+  }
+
+  .comment-content {
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  .reply {
+    margin-top: vars.$spacing-sm;
+    font-size: 0.9rem;
+  }
+}
+
+.comment-respond {
+  margin-top: vars.$spacing-lg;
+
+  .comment-reply-title {
+    margin-bottom: vars.$spacing-md;
+  }
+
+  .comment-notes {
+    margin-bottom: vars.$spacing-md;
+    font-size: 0.9rem;
+    color: vars.$color-text-light;
+  }
+
+  .comment-form-author,
+  .comment-form-email,
+  .comment-form-url {
+    margin-bottom: vars.$spacing-md;
+  }
+
+  .required {
+    color: vars.$color-error;
+  }
+
+  .comment-form-cookies-consent {
+    @include mixins.flex(row, nowrap, flex-start, center);
+    margin-bottom: vars.$spacing-md;
+
+    input {
+      margin-right: vars.$spacing-xs;
+    }
+  }
+
+  .form-submit {
+    margin-bottom: 0;
+  }
+}
+
+.comment-navigation {
+  margin: vars.$spacing-md 0;
+
+  .nav-links {
+    @include mixins.flex(row, wrap, space-between);
+  }
+
+  .nav-previous,
+  .nav-next {
+    max-width: 48%;
+  }
+}

@@ -1,0 +1,210 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Single post and page styles
+.single, .page {
+  .entry-header {
+    margin-bottom: vars.$spacing-xl;
+  }
+
+  .entry-title {
+    font-size: 2.5rem;
+    margin-bottom: vars.$spacing-sm;
+
+    @include mixins.media-breakpoint-down(md) {
+      font-size: 2rem;
+    }
+  }
+
+  .entry-meta {
+    color: vars.$color-text-light;
+    font-size: 0.9rem;
+    margin-bottom: vars.$spacing-md;
+
+    a {
+      color: vars.$color-text-light;
+
+      &:hover {
+        color: vars.$color-primary;
+      }
+    }
+
+    .sep {
+      margin: 0 vars.$spacing-xs;
+    }
+  }
+
+  .post-thumbnail {
+    margin-bottom: vars.$spacing-lg;
+
+    img {
+      width: 100%;
+      border-radius: vars.$border-radius-md;
+    }
+  }
+
+  .entry-content {
+    margin-bottom: vars.$spacing-xl;
+
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: vars.$spacing-lg;
+      margin-bottom: vars.$spacing-sm;
+    }
+
+    > *:first-child {
+      margin-top: 0;
+    }
+
+    p, ul, ol {
+      margin-bottom: vars.$spacing-md;
+    }
+
+    ul, ol {
+      padding-left: vars.$spacing-lg;
+
+      ul, ol {
+        margin-top: vars.$spacing-xs;
+        margin-bottom: vars.$spacing-xs;
+      }
+    }
+
+    ul {
+      list-style: disc;
+    }
+
+    ol {
+      list-style: decimal;
+    }
+
+    li {
+      margin-bottom: vars.$spacing-xs;
+    }
+
+    blockquote {
+      margin: vars.$spacing-lg 0;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .entry-footer {
+    margin-top: vars.$spacing-xl;
+    padding-top: vars.$spacing-md;
+    border-top: 1px solid vars.$color-border;
+    font-size: 0.9rem;
+    color: vars.$color-text-light;
+
+    .cat-links,
+    .tag-links {
+      display: block;
+      margin-bottom: vars.$spacing-xs;
+    }
+
+    a {
+      color: vars.$color-text;
+
+      &:hover {
+        color: vars.$color-primary;
+      }
+    }
+  }
+
+  // Author bio
+  .author-bio {
+    margin-top: vars.$spacing-xl;
+    padding: vars.$spacing-lg;
+    background-color: vars.$color-light-gray;
+    border-radius: vars.$border-radius-md;
+
+    .author-title {
+      margin-bottom: vars.$spacing-sm;
+      font-size: 1.25rem;
+    }
+
+    .author-avatar {
+      float: left;
+      margin-right: vars.$spacing-md;
+      margin-bottom: vars.$spacing-sm;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .author-description {
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Post navigation
+  .post-navigation {
+    margin-top: vars.$spacing-xl;
+    padding-top: vars.$spacing-md;
+    border-top: 1px solid vars.$color-border;
+
+    .nav-links {
+      @include mixins.flex(row, wrap, space-between);
+    }
+
+    .nav-previous,
+    .nav-next {
+      max-width: 48%;
+
+      @include mixins.media-breakpoint-down(sm) {
+        max-width: 100%;
+        width: 100%;
+
+        &:first-child {
+          margin-bottom: vars.$spacing-md;
+        }
+      }
+    }
+
+    a {
+      display: block;
+      padding: vars.$spacing-md;
+      background-color: vars.$color-light-gray;
+      border-radius: vars.$border-radius-md;
+      color: vars.$color-text;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: vars.$color-medium-gray;
+      }
+
+      .nav-label {
+        display: block;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: vars.$spacing-xs;
+        color: vars.$color-text-light;
+      }
+
+      .post-title {
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Page specific styles
+.page {
+  .entry-header {
+    text-align: center;
+  }
+
+  // No title template
+  &.page-template-page-no-title {
+    .entry-header {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,81 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Default form elements
+input[type="text"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="search"],
+input[type="number"],
+input[type="tel"],
+input[type="range"],
+input[type="date"],
+input[type="month"],
+input[type="week"],
+input[type="time"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="color"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  padding: vars.$spacing-sm;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$border-radius-sm;
+  background-color: vars.$color-background;
+  @include mixins.transition(border-color);
+
+  &:focus {
+    outline: none;
+    border-color: vars.$color-primary;
+  }
+}
+
+// Custom checkbox and radio styles
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: vars.$spacing-xxs;
+}
+
+// Form layouts
+.form-row {
+  margin-bottom: vars.$spacing-md;
+}
+
+.form-group {
+  margin-bottom: vars.$spacing-md;
+}
+
+label {
+  display: block;
+  margin-bottom: vars.$spacing-xs;
+  font-weight: 500;
+}
+
+// Required indicator
+.required {
+  color: vars.$color-error;
+}
+
+// Error states
+.error-message {
+  color: vars.$color-error;
+  font-size: 0.9rem;
+  margin-top: vars.$spacing-xxs;
+}
+
+.form-field-error {
+  input, textarea, select {
+    border-color: vars.$color-error;
+  }
+}
+
+// Success states
+.success-message {
+  color: vars.$color-success;
+  font-size: 0.9rem;
+  margin-top: vars.$spacing-xxs;
+}

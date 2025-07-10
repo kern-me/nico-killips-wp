@@ -1,0 +1,103 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Archive pages (category, tag, author, date)
+.archive {
+  .page-header {
+    padding-bottom: vars.$spacing-md;
+    margin-bottom: vars.$spacing-xl;
+    border-bottom: 1px solid vars.$color-border;
+  }
+
+  .page-title {
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  .archive-description {
+    color: vars.$color-text-light;
+    font-size: 1.1rem;
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Author archives
+  .author-info {
+    @include mixins.flex(row, nowrap, flex-start, center);
+    margin-bottom: vars.$spacing-md;
+
+    .author-avatar {
+      margin-right: vars.$spacing-md;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    .author-description {
+      flex: 1;
+
+      h2 {
+        margin-bottom: vars.$spacing-xs;
+        font-size: 1.5rem;
+      }
+
+      p:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Search results
+  &.search-results {
+    .page-header {
+      margin-bottom: vars.$spacing-xl;
+    }
+
+    .search-query {
+      font-style: italic;
+    }
+
+    .no-results {
+      .page-content {
+        padding: vars.$spacing-lg;
+        background-color: vars.$color-light-gray;
+        border-radius: vars.$border-radius-md;
+      }
+    }
+  }
+
+  // Pagination
+  .pagination {
+    margin-top: vars.$spacing-xl;
+    padding-top: vars.$spacing-md;
+    border-top: 1px solid vars.$color-border;
+    text-align: center;
+
+    .nav-links {
+      @include mixins.flex(row, wrap, center, center);
+      gap: vars.$spacing-xs;
+    }
+
+    .page-numbers {
+      display: inline-block;
+      padding: vars.$spacing-xs vars.$spacing-sm;
+      border: 1px solid vars.$color-border;
+      border-radius: vars.$border-radius-sm;
+      text-decoration: none;
+      color: vars.$color-text;
+
+      &.current {
+        background-color: vars.$color-primary;
+        color: white;
+        border-color: vars.$color-primary;
+      }
+
+      &:hover:not(.current) {
+        background-color: vars.$color-light-gray;
+      }
+    }
+  }
+}

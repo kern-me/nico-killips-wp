@@ -1,0 +1,106 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Base widget styles
+.widget {
+  margin-bottom: vars.$spacing-lg;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: vars.$spacing-xs 0;
+      border-bottom: 1px solid vars.$color-border;
+
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+// Calendar widget
+.widget_calendar {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  caption {
+    font-weight: 700;
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  th, td {
+    padding: vars.$spacing-xxs;
+    text-align: center;
+  }
+
+  #today {
+    background-color: vars.$color-primary;
+    color: white;
+    border-radius: vars.$border-radius-sm;
+  }
+}
+
+// Search widget
+.widget_search {
+  .search-form {
+    @include mixins.flex(row, nowrap);
+
+    .search-field {
+      flex: 1;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .search-submit {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+}
+
+// Recent posts widget
+.widget_recent_entries {
+  li {
+    margin-bottom: vars.$spacing-xs;
+  }
+
+  .post-date {
+    display: block;
+    font-size: 0.85rem;
+    color: vars.$color-text-light;
+  }
+}
+
+// Recent comments widget
+.widget_recent_comments {
+  li {
+    color: vars.$color-text-light;
+  }
+}
+
+// Tag cloud widget
+.widget_tag_cloud {
+  .tagcloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: vars.$spacing-xs;
+
+    a {
+      display: inline-block;
+      padding: vars.$spacing-xxs vars.$spacing-xs;
+      background-color: vars.$color-light-gray;
+      border-radius: vars.$border-radius-sm;
+      font-size: 0.85rem !important;
+
+      &:hover {
+        background-color: vars.$color-primary;
+        color: white;
+      }
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// WordPress alignment classes
+.alignleft {
+  float: left;
+  margin-right: vars.$spacing-md;
+  margin-bottom: vars.$spacing-sm;
+}
+
+.alignright {
+  float: right;
+  margin-left: vars.$spacing-md;
+  margin-bottom: vars.$spacing-sm;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+// Block alignment
+.alignwide {
+  margin-left: -50px;
+  margin-right: -50px;
+  max-width: calc(100% + 100px);
+
+  @include mixins.media-breakpoint-down(md) {
+    margin-left: -20px;
+    margin-right: -20px;
+    max-width: calc(100% + 40px);
+  }
+
+  @include mixins.media-breakpoint-down(sm) {
+    margin-left: 0;
+    margin-right: 0;
+    max-width: 100%;
+  }
+}
+
+.alignfull {
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  max-width: 100vw;
+  width: 100vw;
+}
+
+// Alignment for various block types
+.wp-block-image {
+  &.alignfull,
+  &.alignwide {
+    img {
+      width: 100%;
+    }
+  }
+
+  &.alignleft,
+  &.alignright {
+    max-width: 50%;
+
+    @include mixins.media-breakpoint-down(sm) {
+      max-width: 100%;
+      float: none;
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}
+
+// Clear floats
+.clearfix::after {
+  content: "";
+  display: table;
+  clear: both;
+}

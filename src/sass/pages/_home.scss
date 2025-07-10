@@ -1,0 +1,101 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+// Home page specific styles
+.home {
+  .entry-header {
+    margin-bottom: vars.$spacing-xl;
+    text-align: center;
+  }
+
+  .entry-content {
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Hero section
+.home-hero {
+  padding: vars.$spacing-xl 0;
+  background-color: vars.$color-light-gray;
+  margin-bottom: vars.$spacing-xl;
+  text-align: center;
+
+  h1 {
+    font-size: 2.5rem;
+    margin-bottom: vars.$spacing-md;
+
+    @include mixins.media-breakpoint-up(md) {
+      font-size: 3rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: vars.$spacing-lg;
+  }
+
+  .button-group {
+    justify-content: center;
+  }
+}
+
+// Featured sections
+.home-features {
+  margin-bottom: vars.$spacing-xxl;
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$spacing-lg;
+
+    @include mixins.media-breakpoint-up(md) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include mixins.media-breakpoint-up(lg) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .feature-item {
+    padding: vars.$spacing-md;
+    border-radius: vars.$border-radius-md;
+    background-color: vars.$color-light-gray;
+    text-align: center;
+
+    h3 {
+      margin-bottom: vars.$spacing-sm;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Call to action
+.home-cta {
+  padding: vars.$spacing-xl 0;
+  text-align: center;
+  background-color: vars.$color-accent;
+  margin-bottom: vars.$spacing-xxl;
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: vars.$spacing-md;
+  }
+
+  p {
+    font-size: 1.2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: vars.$spacing-lg;
+  }
+}

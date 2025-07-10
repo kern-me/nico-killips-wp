@@ -1,0 +1,42 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+.site-footer {
+  padding: vars.$spacing-lg vars.$container-padding;
+  background-color: vars.$color-secondary;
+  color: vars.$color-background;
+  text-align: center;
+
+  a {
+    color: vars.$color-accent;
+
+    &:hover {
+      color: lighten (vars.$color-accent, 10%);
+      text-decoration: underline;
+    }
+  }
+}
+
+.site-info {
+  font-size: 0.9rem;
+}
+
+// Footer widgets
+.footer-widgets {
+  padding: vars.$spacing-lg 0;
+  background-color: vars.$color-light-gray;
+
+  .container {
+    @include mixins.flex(row, wrap);
+    gap: vars.$spacing-lg;
+  }
+
+  .footer-widget {
+    flex: 1 1 300px;
+
+    @include mixins.media-breakpoint-down(md) {
+      flex-basis: 100%;
+    }
+  }
+}

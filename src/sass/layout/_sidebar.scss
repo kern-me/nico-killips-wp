@@ -1,0 +1,46 @@
+  @use '../abstracts/functions';
+  @use '../abstracts/mixins';
+  @use '../abstracts/variables' as vars;
+
+  .widget-area {
+  padding: vars.$spacing-md;
+  background-color: vars.$color-light-gray;
+  border-radius: vars.$border-radius-md;
+
+  @include mixins.media-breakpoint-up(lg) {
+    padding: vars.$spacing-lg;
+  }
+}
+
+.widget {
+  margin-bottom: vars.$spacing-lg;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.widget-title {
+  font-size: 1.25rem;
+  margin-bottom: vars.$spacing-sm;
+  padding-bottom: vars.$spacing-xs;
+  border-bottom: 1px solid vars.$color-border;
+}
+
+// For two-column layout with sidebar
+@include mixins.media-breakpoint-up(lg) {
+  .content-sidebar {
+    @include mixins.flex(row, wrap, space-between, flex-start);
+    gap: vars.$spacing-xl;
+
+    .content-area {
+      flex: 1;
+      min-width: 0; // Fix for flexbox overflow
+    }
+
+    .widget-area {
+      width: 300px;
+      flex-shrink: 0;
+    }
+  }
+}

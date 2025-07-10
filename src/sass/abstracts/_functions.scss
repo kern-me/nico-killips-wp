@@ -1,0 +1,35 @@
+// Convert pixels to rem
+@function rem($pixels, $context: 16) {
+  @return ($pixels / $context) * 1rem;
+}
+
+// Convert pixels to em
+@function em($pixels, $context: 16) {
+  @return ($pixels / $context) * 1em;
+}
+
+// Strip unit from number
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// Color functions
+@function tint($color, $percentage) {
+  @return mix(white, $color, $percentage);
+}
+
+@function shade($color, $percentage) {
+  @return mix(black, $color, $percentage);
+}
+
+// Z-index function
+@function z($layer) {
+  @if map-has-key($z-layers, $layer) {
+    @return map-get($z-layers, $layer);
+  }
+  @warn "No z-index found for `#{$layer}` in $z-layers map.";
+  @return null;
+}

@@ -1,0 +1,2 @@
+# This file ensures the assets/css directory is created
+# It will be kept in version control but compiled CSS files will be ignored

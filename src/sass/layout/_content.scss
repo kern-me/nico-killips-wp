@@ -1,0 +1,118 @@
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
+
+.site {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.site-content {
+  flex: 1 0 auto;
+  padding: vars.$spacing-xl vars.$container-padding;
+
+  @include mixins.media-breakpoint-down(md) {
+    padding: vars.$spacing-lg vars.$container-padding;
+  }
+}
+
+.container {
+  @include mixins.container();
+}
+
+.site-main {
+  max-width: vars.$container-width;
+  margin: 0 auto;
+}
+
+// Posts and pages
+.entry-header {
+  margin-bottom: vars.$spacing-lg;
+}
+
+.entry-title {
+  margin-bottom: vars.$spacing-xs;
+
+  a {
+    color: vars.$color-secondary;
+    text-decoration: none;
+
+    &:hover {
+      color: vars.$color-primary;
+      text-decoration: underline;
+    }
+  }
+}
+
+.entry-meta {
+  color: vars.$color-text-light;
+  font-size: 0.9rem;
+
+  a {
+    color: vars.$color-text-light;
+
+    &:hover {
+      color: vars.$color-primary;
+    }
+  }
+}
+
+.entry-content {
+  margin-bottom: vars.$spacing-lg;
+
+  // WordPress alignment classes
+  .alignleft {
+    float: left;
+    margin-right: vars.$spacing-md;
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  .alignright {
+    float: right;
+    margin-left: vars.$spacing-md;
+    margin-bottom: vars.$spacing-sm;
+  }
+
+  .aligncenter {
+    clear: both;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.entry-footer {
+  margin-top: vars.$spacing-lg;
+  font-size: 0.9rem;
+  color: vars.$color-text-light;
+}
+
+// Posts navigation
+.posts-navigation,
+.post-navigation {
+  margin: vars.$spacing-xl 0;
+
+  .nav-links {
+    @include mixins.flex(row, wrap, space-between);
+  }
+
+  .nav-previous,
+  .nav-next {
+    max-width: 48%;
+  }
+
+  a {
+    display: inline-block;
+    padding: vars.$spacing-sm;
+    background-color: vars.$color-light-gray;
+    border-radius: vars.$border-radius-sm;
+    color: vars.$color-text;
+    text-decoration: none;
+
+    &:hover {
+      background-color: vars.$color-medium-gray;
+      color: vars.$color-text;
+    }
+  }
+}

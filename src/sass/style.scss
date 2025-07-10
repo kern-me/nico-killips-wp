@@ -1,0 +1,47 @@
+/*
+Theme Name: Nico Killips WP
+Theme URI: https://example.com/nico-killips-wp
+Author: Your Name
+Author URI: https://example.com
+Description: A custom WordPress theme
+Version: 1.0.0
+Requires at least: 6.0
+Requires PHP: 8.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: nico-killips-wp
+*/
+
+// Import partials
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/functions';
+
+// Base styles
+@use 'base/reset';
+@use 'base/typography';
+
+// Layout
+@use 'layout/header';
+@use 'layout/navigation';
+@use 'layout/content';
+@use 'layout/sidebar';
+@use 'layout/footer';
+@use 'layout/forms';
+
+// Components
+@use 'components/buttons';
+@use 'components/comments';
+@use 'components/widgets';
+@use 'components/media';
+
+// Pages
+@use 'pages/home';
+@use 'pages/blog';
+@use 'pages/archive';
+@use 'pages/single';
+
+// WordPress specific
+@use 'wordpress/blocks';
+@use 'wordpress/alignment';
+@use 'wordpress/accessibility';

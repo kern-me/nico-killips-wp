@@ -1,0 +1,27 @@
+{
+  "name": "nico-killips-wp",
+  "version": "1.0.0",
+  "description": "A custom WordPress theme",
+  "main": "index.js",
+  "scripts": {
+    "start": "sass --watch src/sass:assets/css",
+    "build": "sass src/sass:assets/css --style=compressed",
+    "lint": "stylelint 'src/sass/**/*.scss' --fix"
+  },
+  "keywords": [
+    "wordpress",
+    "theme"
+  ],
+  "author": "Your Name",
+  "license": "GPL-2.0-or-later",
+  "devDependencies": {
+    "sass": "^1.69.5",
+    "stylelint": "^15.10.3",
+    "stylelint-config-standard-scss": "^11.1.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "> 0.5%",
+    "not dead"
+  ]
+}
