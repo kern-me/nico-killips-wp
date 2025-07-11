@@ -1,17 +1,23 @@
 <?php
 /**
  * Template part for displaying posts
- *
- * @package Nico_Killips_WP
  */
 ?>
 
-<section>
-    <?php
-        if ( is_singular() ) :
-            the_content();
-        else :
-            the_excerpt();
-        endif;
-    ?>
-</section>
+
+
+<?php
+if ( get_post_type() === 'portfolio-sample' ) {
+	// portfolio
+}
+?>
+
+<div class="entry-content">
+	<?php
+	if ( is_singular() ) :
+		the_content();
+	else :
+		the_excerpt();
+	endif;
+	?>
+</div>

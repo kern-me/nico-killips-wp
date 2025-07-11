@@ -1,11 +1,77 @@
-  @use '../abstracts/functions';
-  @use '../abstracts/mixins';
-  @use '../abstracts/variables' as vars;
+@use '../abstracts/functions';
+@use '../abstracts/mixins';
+@use '../abstracts/variables' as vars;
 
 .site-header {
   padding: vars.$spacing-md vars.$container-padding;
-  background-color: vars.$color-background;
-  border-bottom: 1px solid vars.$color-border;
+  background-color: vars.$color-primary;
+  border-bottom: 1px solid vars.$color-primary-hover;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  transition: transform 0.3s ease;
+
+  .home-link {
+    p {
+      color: white;
+      margin: 0;
+      &:first-child {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+    }
+  }
+
+
+}
+
+// Fixed Navigation Styles
+
+// Account for WP admin bar when logged in
+.admin-bar .site-header {
+  top: 46px; // Mobile admin bar height
+
+  @media screen and (min-width: 783px) {
+    top: 32px; // Desktop admin bar height
+  }
+}
+
+// Add padding to body to prevent content from hiding under fixed header
+body {
+  padding-top: var(--header-height, 60px);
+}
+
+// iOS and macOS specific fixes for fixed position elements
+.ios,
+.macos {
+  // Fix for momentum scrolling on iOS and macOS
+  -webkit-overflow-scrolling: touch;
+
+  // Fix for fixed elements when keyboard is open on iOS
+  &.keyboard-open .site-header {
+    position: absolute;
+  }
+
+  // Prevent scroll bounce issues at page boundaries
+  &.menu-open {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+}
+
+// For iOS Safari's disappearing address bar behavior
+@supports (-webkit-touch-callout: none) {
+  .site-header {
+    // Fallback for iOS Safari full height issue
+    height: var(--header-height, 60px);
+  }
 }
 
 .site-branding {

@@ -19,14 +19,26 @@
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
         <a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-            <?php bloginfo( 'name' ); ?><p><?php bloginfo( 'description' ); ?></p>
+            <p><?php bloginfo( 'name' ); ?></p>
+            <p><?php bloginfo( 'description' ); ?></p>
         </a>
         <nav id="site-navigation" class="main-navigation">
-            <?php
-            wp_nav_menu([
-                'theme_location' => 'primary',
-                'menu_id'        => 'primary-menu',
-            ]);
-            ?>
+            <button class="menu-toggle" aria-controls="primary-menu-container" aria-expanded="false" aria-label="Toggle menu">
+                <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                </span>
+            </button>
+            <div id="primary-menu-container" class="menu-container">
+                <?php
+                wp_nav_menu([
+                    'theme_location' => 'primary',
+                    'menu_id'        => 'primary-menu',
+                    'container'      => false,
+                    'menu_class'     => 'nav-menu',
+                    'items_wrap'     => '<ul id="%1$s" class="%2$s" role="menubar">%3$s</ul>',
+                    'walker'         => new Walker_Nav_Menu_Aria(),
+                ]);
+                ?>
+            </div>
         </nav>
     </header>
