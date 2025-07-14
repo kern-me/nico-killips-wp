@@ -12,6 +12,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Include custom nav walker
 require get_template_directory() . '/inc/class-walker-nav-menu-aria.php';
 
+// Include fonts class
+require get_template_directory() . '/inc/class-nico-killips-fonts.php';
+
 /**
  * Define theme constants
  */
@@ -208,10 +211,6 @@ function disable_gutenberg_for_portfolio_samples($use_block_editor, $post_type) 
     return $use_block_editor;
 }
 add_filter('use_block_editor_for_post_type', 'disable_gutenberg_for_portfolio_samples', 10, 2);
-$portfolio_url = get_portfolio_url();
-if ($portfolio_url) {
-    echo '<a href="' . esc_url($portfolio_url) . '">View Project</a>';
-}
 /**
  * Register Portfolio sample taxonomies
  */
