@@ -4,6 +4,7 @@ $font-secondary: serif;
 $font-monospace: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 $font-size-base: 16px;
 $line-height-base: 1.6;
+$text-max-width: 60ch;
 
 // Colors
 $color-text: #333333;
@@ -52,6 +53,6 @@ $z-index-tooltip: 600;
 
 // Breakpoints
 $breakpoint-sm: 576px;
-$breakpoint-md: 768px;
+$breakpoint-md: 782px;
 $breakpoint-lg: 992px;
 $breakpoint-xl: 1200px;

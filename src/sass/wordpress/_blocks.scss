@@ -25,9 +25,12 @@
 
   .wp-block-button__link {
     background-color: vars.$color-primary;
+    border-radius: 0;
     color: white;
+    letter-spacing: 2px;
+    font-weight: 700;
     padding: vars.$spacing-sm vars.$spacing-lg;
-    border-radius: vars.$border-radius-sm;
+    text-transform: uppercase;
     @include mixins.transition(background-color);
 
     &:hover {

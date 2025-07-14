@@ -4,11 +4,12 @@
 
 .site-header {
   padding: vars.$spacing-md vars.$container-padding;
-  background-color: vars.$color-primary;
-  border-bottom: 1px solid vars.$color-primary-hover;
+  background: radial-gradient(ellipse at center,  rgba(2,121,132,0.95) 0%,rgba(33,106,111,0.95) 100%);
+  border-bottom: 2px solid vars.$color-primary-hover;
   display: flex;
   justify-content: space-between;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;
   left: 0;
@@ -17,17 +18,30 @@
   transition: transform 0.3s ease;
 
   .home-link {
+    &--name {
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+
+    &--description {
+      font-size: 0.9rem;
+    }
+
     p {
       color: white;
       margin: 0;
-      &:first-child {
-        font-size: 1.25rem;
-        font-weight: bold;
-      }
     }
   }
+}
 
-
+.wp-block-image.headshot {
+  max-width: 20rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  @include mixins.media-breakpoint-down(md) {
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 // Fixed Navigation Styles
@@ -43,7 +57,7 @@
 
 // Add padding to body to prevent content from hiding under fixed header
 body {
-  padding-top: var(--header-height, 60px);
+  padding-top: var(--header-height, 6.5rem);
 }
 
 // iOS and macOS specific fixes for fixed position elements

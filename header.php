@@ -9,7 +9,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<?php wp_head(); ?>
 </head>
 
@@ -19,8 +19,8 @@
 <div id="page" class="site">
 	<header id="masthead" class="site-header">
         <a class="home-link" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
-            <p><?php bloginfo( 'name' ); ?></p>
-            <p><?php bloginfo( 'description' ); ?></p>
+            <p class="home-link--name"><?php bloginfo( 'name' ); ?></p>
+            <p class="home-link--description"><?php bloginfo( 'description' ); ?></p>
         </a>
         <nav id="site-navigation" class="main-navigation">
             <button class="menu-toggle" aria-controls="primary-menu-container" aria-expanded="false" aria-label="Toggle menu">
