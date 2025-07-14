@@ -53,8 +53,7 @@ add_action( 'after_setup_theme', 'nico_killips_setup' );
 /**
  * Enqueue theme styles
  */
-function nico_killips_enqueue_styles() {
-    // Get theme version from style.css
+function nico_killips_enqueue_styles(): void {
     $theme_version = wp_get_theme()->get('Version');
     
     // Enqueue main stylesheet
@@ -70,14 +69,13 @@ add_action('wp_enqueue_scripts', 'nico_killips_enqueue_styles');
 /**
  * Enqueue theme scripts
  */
-function nico_killips_enqueue_scripts() {
-    // Get theme version from style.css
+function nico_killips_enqueue_scripts(): void {
     $theme_version = wp_get_theme()->get('Version');
 
     // Enqueue navigation script
     wp_enqueue_script(
-        'nico-killips-navigation',
-        get_template_directory_uri() . '/assets/js/navigation.js',
+        'nico-killips-scripts',
+        get_template_directory_uri() . '/assets/js/app.js',
         array(),
         $theme_version,
         true

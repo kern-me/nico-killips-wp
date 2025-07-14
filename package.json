@@ -6,15 +6,18 @@
   "scripts": {
     "start": "sass --watch src/sass:assets/css",
     "build": "sass src/sass:assets/css --style=compressed",
-    "lint": "stylelint 'src/sass/**/*.scss' --fix"
+    "lint": "stylelint 'src/sass/**/*.scss' --fix",
+    "build:js": "esbuild src/js/*.js --bundle --minify --outfile=assets/js/app.js",
+    "watch:js": "esbuild src/js/*.js --bundle --watch --outfile=assets/js/app.js"
   },
   "keywords": [
     "wordpress",
     "theme"
   ],
-  "author": "Your Name",
+  "author": "Nico Killips",
   "license": "GPL-2.0-or-later",
   "devDependencies": {
+    "esbuild": "^0.19.11",
     "sass": "^1.69.5",
     "stylelint": "^15.10.3",
     "stylelint-config-standard-scss": "^11.1.0"

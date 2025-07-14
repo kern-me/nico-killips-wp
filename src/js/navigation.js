@@ -1,14 +1,18 @@
 /**
  * File navigation.js.
- * 
+ *
  * Handles hamburger menu toggling and accessibility features.
  */
 (function() {
     'use strict';
 
+    // Keep track of elements for focus trap
+    let focusableElements = [];
+    let firstFocusableElement = null;
+    let lastFocusableElement = null;
+
     // Initialize navigation when DOM is ready
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('INIT!');
         initMainNavigation();
         handleKeyboardFocus();
     });
@@ -26,6 +30,9 @@
         const button = nav.querySelector('.menu-toggle');
         const menu = document.getElementById('primary-menu-container');
         const menuItems = nav.querySelectorAll('.nav-menu a');
+
+        // Add data-focus-trap attribute to menu container
+        menu.setAttribute('data-focus-trap', 'nav-menu');
 
         // Return early if the navigation doesn't exist
         if (!button || !menu || !menuItems.length) {
@@ -47,11 +54,17 @@
             // Prevent body scroll when menu is open
             document.body.classList.toggle('menu-open', !expanded);
 
-            // Focus first menu item when opening
             if (!expanded) {
+                // Opening the menu - set up focus trap
+                setupFocusTrap(menu, button, menuItems);
+
+                // Focus first menu item when opening
                 setTimeout(() => {
                     menuItems[0].focus();
                 }, 100);
+            } else {
+                // Closing the menu - remove focus trap
+                removeFocusTrap();
             }
         });
 
@@ -69,8 +82,9 @@
         document.addEventListener('keyup', function(e) {
             if (e.key === 'Escape' && button.getAttribute('aria-expanded') === 'true') {
                 button.setAttribute('aria-expanded', 'false');
-                menu.setAttribute('hidden', '');
+                menu.setAttribute('aria-hidden', 'true');
                 document.body.classList.remove('menu-open');
+                removeFocusTrap();
                 button.focus();
             }
         });
@@ -79,8 +93,9 @@
         document.addEventListener('click', function(e) {
             if (button.getAttribute('aria-expanded') === 'true' && !nav.contains(e.target)) {
                 button.setAttribute('aria-expanded', 'false');
-                menu.setAttribute('hidden', '');
+                menu.setAttribute('aria-hidden', 'true');
                 document.body.classList.remove('menu-open');
+                removeFocusTrap();
             }
         });
     }
@@ -137,5 +152,56 @@
             body.classList.remove('keyboard-navigation');
         });
     }
-})();
 
+    /**
+     * Set up focus trap for the menu
+     * @param {HTMLElement} menuContainer - The menu container element
+     * @param {HTMLElement} toggleButton - The menu toggle button
+     * @param {NodeList} items - The menu items
+     */
+    function setupFocusTrap(menuContainer, toggleButton, items) {
+        // Get all focusable elements inside the menu container
+        const menuFocusables = Array.from(menuContainer.querySelectorAll(
+            'a[href], button, input, textarea, select, details, [tabindex]:not([tabindex="-1"])'
+        )).filter(el => !el.hasAttribute('disabled') && el.offsetParent !== null);
+
+        // Include the toggle button in the focus trap
+        focusableElements = [toggleButton, ...menuFocusables];
+
+        firstFocusableElement = focusableElements[0];
+        lastFocusableElement = focusableElements[focusableElements.length - 1];
+
+        // Add keydown event listener to handle tabbing
+        document.addEventListener('keydown', handleFocusTrap);
+    }
+
+    /**
+     * Handle focus trap keyboard navigation
+     * @param {KeyboardEvent} e - The keyboard event
+     */
+    function handleFocusTrap(e) {
+        if (e.key !== 'Tab') return;
+
+        // If shift + tab on first element, move to last focusable element
+        if (e.shiftKey && document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastFocusableElement.focus();
+        }
+
+        // If tab on last element, move to first focusable element
+        if (!e.shiftKey && document.activeElement === lastFocusableElement) {
+            e.preventDefault();
+            firstFocusableElement.focus();
+        }
+    }
+
+    /**
+     * Remove focus trap
+     */
+    function removeFocusTrap() {
+        document.removeEventListener('keydown', handleFocusTrap);
+        focusableElements = [];
+        firstFocusableElement = null;
+        lastFocusableElement = null;
+    }
+})();

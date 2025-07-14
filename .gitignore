@@ -3,9 +3,10 @@
 # Node modules
 node_modules/
 
-# Compiled CSS
+# Compiled CSS and JS
 assets/css/*.css
 assets/css/*.css.map
+assets/js/app.js
 
 # Logs
 logs
@@ -34,3 +35,4 @@ Thumbs.db
 
 # htaccess
 /.htaccess
+
